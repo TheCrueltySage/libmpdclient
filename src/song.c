@@ -99,6 +99,11 @@ struct mpd_song {
 	 */
 	unsigned prio;
 
+	/**
+	 * The control value for this song.
+	 */
+	unsigned ctrl;
+
 #ifndef NDEBUG
 	/**
 	 * This flag is used in an assertion: when it is set, you must
@@ -144,6 +149,7 @@ mpd_song_new(const char *uri)
 	song->pos = 0;
 	song->id = 0;
 	song->prio = 0;
+	song->ctrl = 0;
 
 	memset(&song->audio_format, 0, sizeof(song->audio_format));
 
@@ -224,6 +230,7 @@ mpd_song_dup(const struct mpd_song *song)
 	ret->pos = song->pos;
 	ret->id = song->id;
 	ret->prio = song->prio;
+	ret->ctrl = song->ctrl;
 
 #ifndef NDEBUG
 	ret->finished = true;
@@ -417,6 +424,18 @@ mpd_song_get_prio(const struct mpd_song *song)
 	return song->prio;
 }
 
+static void
+mpd_song_set_ctrl(struct mpd_song *song, unsigned ctrl)
+{
+	song->ctrl = ctrl;
+}
+
+unsigned
+mpd_song_get_ctrl(const struct mpd_song *song)
+{
+	return song->ctrl;
+}
+
 const struct mpd_audio_format *
 mpd_song_get_audio_format(const struct mpd_song *song)
 {
@@ -522,6 +541,8 @@ mpd_song_feed(struct mpd_song *song, const struct mpd_pair *pair)
 		mpd_song_set_id(song, atoi(pair->value));
 	else if (strcmp(pair->name, "Prio") == 0)
 		mpd_song_set_prio(song, atoi(pair->value));
+	else if (strcmp(pair->name, "Ctrl") == 0)
+		mpd_song_set_ctrl(song, atoi(pair->value));
 	else if (strcmp(pair->name, "Format") == 0)
 		mpd_song_parse_audio_format(song, pair->value);
 

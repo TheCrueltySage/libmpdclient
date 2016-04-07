@@ -184,6 +184,16 @@ unsigned
 mpd_song_get_prio(const struct mpd_song *song);
 
 /**
+ * Returns the control value of this song in the playlist.  The value is
+ * undefined if you did not obtain this song from the queue.
+ *
+ * @since libmpdclient 2.8
+ */
+mpd_pure
+unsigned
+mpd_song_get_ctrl(const struct mpd_song *song);
+
+/**
  * Returns audio format as determined by MPD's decoder plugin.  May
  * return NULL if the format is not available or unknown.
  *

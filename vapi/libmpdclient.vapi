@@ -432,6 +432,18 @@ namespace Mpd {
 		public bool send_prio_id(int priority, uint id);
 		[CCode (cname = "mpd_run_prio_id")]
 		public bool run_prio_id(int priority, uint id);
+		[CCode (cname = "mpd_send_ctrl")]
+		public bool send_ctrl(int control_value, uint position);
+		[CCode (cname = "mpd_run_ctrl")]
+		public bool run_ctrl(int control_value, uint position);
+		[CCode (cname = "mpd_send_ctrl_range")]
+		public bool send_ctrl_range(int control_value, uint start, uint end);
+		[CCode (cname = "mpd_run_ctrl_range")]
+		public bool run_ctrl_range(int control_value, uint start, uint end);
+		[CCode (cname = "mpd_send_ctrl_id")]
+		public bool send_ctrl_id(int control_value, uint id);
+		[CCode (cname = "mpd_run_ctrl_id")]
+		public bool run_ctrl_id(int control_value, uint id);
 		[CCode (cname = "mpd_send_current_song")]
 		public bool send_current_song();
 		[CCode (cname = "mpd_run_current_song")]

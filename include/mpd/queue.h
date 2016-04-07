@@ -646,6 +646,73 @@ bool
 mpd_run_prio_id(struct mpd_connection *connection, int priority,
 		unsigned id);
 
+/**
+ * Change the control_value of the specified song.
+ *
+ * @param connection the connection to MPD
+ * @param control_value a number between 0 and 255
+ * @param position the position of the song
+ */
+bool
+mpd_send_ctrl(struct mpd_connection *connection, int control_value,
+	      unsigned position);
+
+/**
+ * Shortcut for mpd_send_ctrl() and mpd_response_finish().
+ *
+ * @param connection the connection to MPD
+ * @param control_value a number between 0 and 255
+ * @param start the start position of the range (including)
+ * @param end the end position of the range (excluding)
+ */
+bool
+mpd_run_ctrl(struct mpd_connection *connection, int control_value,
+	     unsigned position);
+
+/**
+ * Change the control_value of a song range.
+ *
+ * @param connection the connection to MPD
+ * @param control_value a number between 0 and 255
+ * @param position the position of the song
+ */
+bool
+mpd_send_ctrl_range(struct mpd_connection *connection, int control_value,
+		    unsigned start, unsigned end);
+
+/**
+ * Shortcut for mpd_send_ctrl_range() and mpd_response_finish().
+ *
+ * @param connection the connection to MPD
+ * @param control_value a number between 0 and 255
+ * @param position the position of the song
+ */
+bool
+mpd_run_ctrl_range(struct mpd_connection *connection, int control_value,
+		   unsigned start, unsigned end);
+
+/**
+ * Change the control_value of the specified song.
+ *
+ * @param connection the connection to MPD
+ * @param control_value a number between 0 and 255
+ * @param id the id of the song
+ */
+bool
+mpd_send_ctrl_id(struct mpd_connection *connection, int control_value,
+		 unsigned id);
+
+/**
+ * Shortcut for mpd_send_ctrl_id() and mpd_response_finish().
+ *
+ * @param connection the connection to MPD
+ * @param control_value a number between 0 and 255
+ * @param id the id of the song
+ */
+bool
+mpd_run_ctrl_id(struct mpd_connection *connection, int control_value,
+		unsigned id);
+
 #ifdef __cplusplus
 }
 #endif

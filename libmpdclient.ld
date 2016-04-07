@@ -289,6 +289,12 @@ global:
 	mpd_run_prio_range;
 	mpd_send_prio_id;
 	mpd_run_prio_id;
+	mpd_send_ctrl;
+	mpd_run_ctrl;
+	mpd_send_ctrl_range;
+	mpd_run_ctrl_range;
+	mpd_send_ctrl_id;
+	mpd_run_ctrl_id;
 
 	/* mpd/recv.h */
 	mpd_recv_pair;
@@ -338,6 +344,7 @@ global:
 	mpd_song_get_pos;
 	mpd_song_get_id;
 	mpd_song_get_prio;
+	mpd_song_get_ctrl;
 	mpd_song_get_audio_format;
 	mpd_song_begin;
 	mpd_song_feed;

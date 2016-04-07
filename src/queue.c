@@ -500,3 +500,51 @@ mpd_run_prio_id(struct mpd_connection *connection, int priority,
 		mpd_send_prio_id(connection, priority, id) &&
 		mpd_response_finish(connection);
 }
+
+bool
+mpd_send_ctrl(struct mpd_connection *connection, int control_value,
+	      unsigned position)
+{
+	return mpd_send_int2_command(connection, "ctrl", control_value, position);
+}
+
+bool
+mpd_run_ctrl(struct mpd_connection *connection, int control_value,
+	     unsigned position)
+{
+	return mpd_run_check(connection) &&
+		mpd_send_ctrl(connection, control_value, position) &&
+		mpd_response_finish(connection);
+}
+
+bool
+mpd_send_ctrl_range(struct mpd_connection *connection, int control_value,
+		    unsigned start, unsigned end)
+{
+	return mpd_send_int3_command(connection, "ctrl", control_value, start, end);
+}
+
+bool
+mpd_run_ctrl_range(struct mpd_connection *connection, int control_value,
+		   unsigned start, unsigned end)
+{
+	return mpd_run_check(connection) &&
+		mpd_send_ctrl_range(connection, control_value, start, end) &&
+		mpd_response_finish(connection);
+}
+
+bool
+mpd_send_ctrl_id(struct mpd_connection *connection, int control_value,
+		 unsigned id)
+{
+	return mpd_send_int2_command(connection, "ctrlid", control_value, id);
+}
+
+bool
+mpd_run_ctrl_id(struct mpd_connection *connection, int control_value,
+		unsigned id)
+{
+	return mpd_run_check(connection) &&
+		mpd_send_ctrl_id(connection, control_value, id) &&
+		mpd_response_finish(connection);
+}
