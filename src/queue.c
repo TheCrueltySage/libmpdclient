@@ -521,7 +521,8 @@ bool
 mpd_send_ctrl_range(struct mpd_connection *connection, int control_value,
 		    unsigned start, unsigned end)
 {
-	return mpd_send_int3_command(connection, "ctrl", control_value, start, end);
+	return mpd_send_i_range_command(connection, "ctrl", control_value,
+					start, end);
 }
 
 bool
